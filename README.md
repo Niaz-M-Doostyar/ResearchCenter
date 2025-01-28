@@ -1,1 +1,1 @@
-# ResearchCenter
+# KDRU Research Center
