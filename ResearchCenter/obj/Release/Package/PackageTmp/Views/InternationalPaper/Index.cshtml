@@ -1,0 +1,122 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        @*<div class="col-lg-12">*@
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <form class="search-bar">
+                        <input type="text" id="searchBar" class="form-control" placeholder="Enter for name, faculty and designation" onkeyup="searchProducts()">
+                        <a><i class="icon-magnifier"></i></a>
+                    </form>
+                </div>
+                <div class="row align-items-center py-4">
+                    <div class="col-lg-6 col-7">
+                        <h5 class="card-title">International Papers</h5>
+                    </div>
+                    <div class="col-lg-6 col-5 text-right">
+                        <a href=@Url.Action("Create","InternationalPaper") class="btn btn-sm btn-neutral text-white bg-dark-light">New</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table" id="productTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Family Name</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Faculty</th>
+                                <th scope="col">Academic Rank</th>
+                                @*<th scope="col">Speciality</th>*@
+                                <th scope="col">Title</th>
+                                <th scope="col">Article(Type)</th>
+                                <th scope="col">Journal Name</th>
+                                <th scope="col">Publisher Name</th>
+                                <th scope="col">Language</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Issue No</th>
+                                <th scope="col">Pages</th>
+                                <th scope="col">DOI</th>
+                                <th scope="col">PDF</th>
+                                <th scope="col">Comment</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Confirmation</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Rows.Count; i++)
+                            {
+                                <tr>
+                                    <td>@Model.Rows[i][0]</td>
+                                    <td>@Model.Rows[i][1]</td>
+                                    <td>@Model.Rows[i][2]</td>
+                                    <td>@Model.Rows[i][3]</td>
+                                    <td>@Model.Rows[i][4]</td>
+                                    <td>@Model.Rows[i][5]</td>
+                                    <td>@Model.Rows[i][6]</td>
+                                    <td>@Model.Rows[i][8]</td>
+                                    <td>@Model.Rows[i][9]</td>
+                                    <td>@Model.Rows[i][10]</td>
+                                    <td>@Model.Rows[i][11]</td>
+                                    <td>@Model.Rows[i][12]</td>
+                                    <td>@Model.Rows[i][13]</td>
+                                    <td>
+                                        @{
+                                            var date = Model.Rows[i][14];
+                                            if (date is DateTime dateTime)
+                                            {
+                                                @dateTime.ToString("MM/dd/yyyy");
+                                            }
+                                            else
+                                            {
+                                                @date;
+                                            }
+                                        }
+                                    </td>
+                                    <td>@Model.Rows[i][15]</td>
+                                    <td>@Model.Rows[i][16]</td>
+                                    <td>
+                                        @{
+                                            string src = "~/UploadedFiles/" + @Model.Rows[i][17];
+                                        }
+                                        <a href=@Url.Content(src) target="_blank">@Model.Rows[i][17]</a>
+                                    </td>
+                                    <td>@Model.Rows[i][18]</td>
+                                    <td>@Model.Rows[i][19]</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-success" href=@Url.Action("ChangeStatus", "InternationalPaper", new { @id=@Model.Rows[i][0], @status = "1" })>Accept</a>
+                                        <a class="btn btn-sm btn-danger" href=@Url.Action("ChangeStatus", "InternationalPaper", new { @id=@Model.Rows[i][0], @status = "0" })>Decline</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" href=@Url.Action("Edit", "InternationalPaper", new { @id=@Model.Rows[i][0] })>Edit</a>
+                                        <a class="btn btn-sm btn-danger" href=@Url.Action("Delete", "InternationalPaper", new { @id=@Model.Rows[i][0] })>Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--start overlay-->
+    @*<div class="overlay toggle-menu"></div>*@
+    <!--end overlay-->
+
+</div>
+<!-- End container-fluid-->
+@*</div>*@
+
+
+

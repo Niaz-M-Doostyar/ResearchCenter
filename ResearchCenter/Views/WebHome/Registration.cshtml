@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Research Center Registration</title>
+    <!-- loader-->
+    <link href="~/Contents/css/pace.min.css" rel="stylesheet" />
+    <script src="~/Contents/js/pace.min.js"></script>
+    <!--favicon-->
+    <link rel="icon" href="~/Contents/images/RCLogo.jpg" type="image/x-icon">
+    <!-- Bootstrap core CSS-->
+    <link href="~/Contents/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- animate CSS-->
+    <link href="~/Contents/css/animate.css" rel="stylesheet" type="text/css" />
+    <!-- Icons CSS-->
+    <link href="~/Contents/css/icons.css" rel="stylesheet" type="text/css" />
+    <!-- Custom Style-->
+    <link href="~/Contents/css/app-style.css" rel="stylesheet" />
+
+</head>
+
+<body class="bg-theme bg-theme2">
+
+    <!-- start loader -->
+    <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner"><div class="loader"></div></div></div></div>
+    <!-- end loader -->
+    <!-- Start wrapper-->
+    <div id="wrapper">
+
+        <div class="card card-authentication1 mx-auto my-4">
+            <div class="card-body">
+                <div class="card-content p-2">
+                    <div class="text-center">
+                        <img src="~/Contents/images/RCLogo.jpg" alt="logo icon" style="width:80px; height:60px">
+                    </div>
+                    <div class="card-title text-uppercase text-center py-3">Sign Up</div>
+                    @using (Html.BeginForm("Registration", "WebHome", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-group">
+                            <label for="name" class="sr-only">Name</label>
+                            <div class="position-relative has-icon-right">
+                                <input type="text" id="nameInput" name="name" class="form-control input-shadow" autocomplete="off" placeholder="Enter Your Full Name" required>
+                                <div class="form-control-position">
+                                    <i class="icon-user"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="sr-only">Phone Number</label>
+                            <div class="position-relative has-icon-right">
+                                <input type="text" id="phoneInput" name="phone" class="form-control input-shadow" autocomplete="off" placeholder="Enter Your Phone Number" required>
+                                <div class="form-control-position">
+                                    <i class="icon-phone"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="department" class="sr-only">Department</label>
+                            <div class="position-relative has-icon-right">
+                                <input type="text" id="deptInput" name="department" class="form-control input-shadow" autocomplete="off" placeholder="Enter Your Department" required>
+                                <div class="form-control-position">
+                                    <i class="fa fa-building"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="faculty" class="sr-only"></label>
+                            <div class="position-relative has-icon-right">
+                                <select class="form-control input-shadow" id="faculty" name="faculty" required>
+                                    <option value="" disabled selected>Select Your Faculty</option>
+                                    <option value="Computer Science">Computer Sciense</option>
+                                    <option value="Computer Science">Economics</option>
+                                    <option value="Computer Science">Education</option>
+                                    <option value="Computer Science">Engineering</option>
+                                    <option value="Computer Science">Journalism</option>
+                                    <option value="Linguistic">Language & Literature</option>
+                                    <option value="Linguistic">Law & Political Science</option>
+                                    <option value="Medical">Medical</option>
+                                    <option value="Medical">Pharmacy</option>
+                                    <option value="Medical">Public Administration & Policy</option>
+                                    <option value="Medical">Pharmacy</option>
+                                    <option value="Medical">Sharia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="designation" class="sr-only">Designation</label>
+                            <div class="position-relative has-icon-right">
+                                <select id="designation" name="designation" class="form-control input-shadow" required>
+                                    <option value="" disabled selected>Select Your Designation</option>
+                                    <option value="Senior Teaching Assistant">Teaching Assistant</option>
+                                    <option value="Junior Teaching Assistant">Senior Teaching Assistant</option>
+                                    <option value="Junior Professor Assistant">Assistant Professor</option>
+                                    <option value="Junior Professor Assistant">Associate Professor</option>
+                                    <option value="Junior Professor Assistant">Professor</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email ID</label>
+                            <div class="position-relative has-icon-right">
+                                <input type="email" id="emailInput" name="email" class="form-control input-shadow" autocomplete="off" placeholder="Enter Your Email ID" required>
+                                <div class="form-control-position">
+                                    <i class="icon-envelope-open"></i>
+                                </div>
+                                @if (ViewBag.error != null)
+                                {
+                                    <span class="badge badge-danger">@ViewBag.error</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Password</label>
+                            <div class="position-relative has-icon-right">
+                                <input type="password" id="passInput" name="password" class="form-control input-shadow" autocomplete="off" placeholder="password can contain (#,$,%,.,white space) symbols" required>
+                                <div class="form-control-position">
+                                    <i class="icon-lock"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-light btn-block waves-effect waves-light">Sign Up</button>
+                        </div>
+                    }
+                    @*<div class="form-group">
+                            <div class="icheck-material-white">
+                                <input type="checkbox" id="user-checkbox" checked="" />
+                                <label for="user-checkbox">I Agree With Terms & Conditions</label>
+                            </div>
+                        </div>*@
+
+
+                    @*<div class="text-center mt-3">Sign Up With</div>
+
+                        <div class="form-row mt-4">
+                            <div class="form-group mb-0 col-6">
+                                <button type="button" class="btn btn-light btn-block"><i class="fa fa-facebook-square"></i> Facebook</button>
+                            </div>
+                            <div class="form-group mb-0 col-6 text-right">
+                                <button type="button" class="btn btn-light btn-block"><i class="fa fa-twitter-square"></i> Twitter</button>
+                            </div>
+                        </div>*@
+
+
+                </div>
+            </div>
+            <div class="card-footer text-center py-3">
+                <p class="text-warning mb-0">Already have an account? <a href=@Url.Action("Login", "WebHome")> Sign In here</a></p>
+            </div>
+        </div>
+
+    </div><!--wrapper-->
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Contents/js/jquery.min.js"></script>
+    <script src="~/Contents/js/popper.min.js"></script>
+    <script src="~/Contents/js/bootstrap.min.js"></script>
+    <!-- sidebar-menu js -->
+    <script src="~/Contents/js/sidebar-menu.js"></script>
+    <!-- Custom scripts -->
+    <script src="~/Contents/js/app-script.js"></script>
+    <script src="~/Contents/js/validate.js"></script>
+
+    <script>
+        // DOM is ready
+        $(function () {
+            nameInput();
+            phoneInput();
+            deptInput();
+            emailInput();
+            passInput();
+        })
+    </script>
+</body>
+</html>

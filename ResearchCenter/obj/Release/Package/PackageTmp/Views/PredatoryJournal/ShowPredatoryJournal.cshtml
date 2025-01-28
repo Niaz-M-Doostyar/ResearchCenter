@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "ShowPredatoryJournal";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        @*<div class="col-lg-12">*@
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center py-4">
+                    <div class="col-lg-6 col-7">
+                        <h5 class="card-title">Predatory Journal</h5>
+                    </div>
+                    <div class="col-lg-6 col-5 text-right">
+                        <a href=@Url.Action("CreatePredatoryJournal","PredatoryJournal") class="btn btn-sm btn-neutral text-white bg-dark-light">New</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Links</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Rows.Count; i++)
+                            {
+                                <tr>
+                                    <td>@Model.Rows[i][0]</td>
+                                    <td>@Model.Rows[i][1]</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" href=@Url.Action("EditPredatoryJournal", "PredatoryJournal", new { @id=@Model.Rows[i][0] })>Edit</a>
+                                        <a class="btn btn-sm btn-danger" href=@Url.Action("DeletePredatoryJournal", "PredatoryJournal", new { @id=@Model.Rows[i][0] })>Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--start overlay-->
+    <div class="overlay toggle-menu"></div>
+    <!--end overlay-->
+
+</div>

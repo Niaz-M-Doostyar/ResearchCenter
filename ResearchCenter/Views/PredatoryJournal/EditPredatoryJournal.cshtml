@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "EditPredatoryJournal";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="row mt-3 justify-content-center">
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">Please fill with details</div>
+                            <hr>
+                            @for (int i = 0; i < Model.Rows.Count; i++)
+                            {
+                                using (Html.BeginForm("EditPredatoryJournal", "PredatoryJournal", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="form-group">
+                                        <label for="link">Link</label>
+                                        <input type="text" class="form-control form-control-rounded" id="link" name="link" value="@Model.Rows[i][1]">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-light btn-round px-5">Submit</button>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div><!--End Row-->
+            <!--start overlay-->
+            <div class="overlay toggle-menu"></div>
+            <!--end overlay-->
+
+        </div>
+        <!-- End container-fluid-->
+
+    </div>

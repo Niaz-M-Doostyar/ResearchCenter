@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "EditServices";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row mt-3 justify-content-center">
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Please fill with details</div>
+                        <hr>
+                        @for (int i = 0; i < Model.Rows.Count; i++)
+                        {
+                            using (Html.BeginForm("EditServices", "Services", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" class="form-control form-control-rounded" id="subject" name="subject" value="@Model.Rows[i][1]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control form-control-rounded" id="description" name="description" rows="10">@Model.Rows[i][2]</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image">Image <small style="font-weight:bold">Maximum length 2MB</small></label>
+                                    <input type="file" id="image" name="image">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-light btn-round px-5">Submit</button>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div><!--End Row-->
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+
+</div>
+

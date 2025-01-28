@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Research Center Dashboard</title>
+    <!-- loader-->
+    <link href="~/Contents/css/pace.min.css" rel="stylesheet" />
+    <script src="~/Contents/js/pace.min.js"></script>
+    <!--favicon-->
+    <link rel="icon" href="~/Contents/images/RCLogo.png" type="image/x-icon">
+    <!-- Vector CSS -->
+    <link href="~/Contents/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- simplebar CSS-->
+    <link href="~/Contents/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS-->
+    <link href="~/Contents/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- animate CSS-->
+    <link href="~/Contents/css/animate.css" rel="stylesheet" type="text/css" />
+    <!-- Icons CSS-->
+    <link href="~/Contents/css/icons.css" rel="stylesheet" type="text/css" />
+    <!-- Sidebar CSS-->
+    <link href="~/Contents/css/sidebar-menu.css" rel="stylesheet" />
+    <!-- Custom Style-->
+    <link href="~/Contents/css/app-style.css" rel="stylesheet" />
+</head>
+<body class="bg-theme bg-theme2">
+    <div id="wrapper">
+        <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+            <div class="brand-logo">
+                <a href=@Url.Action("Index","WebHome")>
+                    <img src="~/Contents/images/RCLogo.png" class="logo-icon" alt="logo icon">
+                    <h5 class="logo-text">Research Center</h5>
+                </a>
+            </div>
+            <ul class="sidebar-menu do-nicescrol">
+                <li class="sidebar-header">MAIN NAVIGATION</li>
+                <li>
+                    <a href=@Url.Action("Index","WebHome")>
+                        <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("Index","NationalPaper")>
+                        <i class="zmdi zmdi-search"></i> <span>National Research</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("Index","InternationalPaper")>
+                        <i class="zmdi zmdi-search"></i> <span>International Research</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("showServices","Services")>
+                        <i class="fa fa-cube"></i> <span>Services</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("ShowAchievements","Achievements")>
+                        <i class="fa fa-trophy"></i> <span>Achievments</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("ShowPredatoryJournal","PredatoryJournal")>
+                        <i class="fa fa-link"></i> <span>ShowPredatory Journal</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("ShowAcceptableJournal","AcceptableJournal")>
+                        <i class="fa fa-paperclip"></i> <span>Acceptable Journal</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("ShowCarousel","Carousel")>
+                        <i class="fa fa-trophy"></i> <span>Slider</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("UserSelection","WebHome")>
+                        <i class="zmdi zmdi-nature-people"></i> <span>Users</span>
+                    </a>
+                </li>
+
+                @*<li>
+            <a href=@Url.Action("Login","WebHome") target="_blank">
+                <i class="zmdi zmdi-lock"></i> <span>Login</span>
+            </a>
+        </li>*@
+
+                <li>
+                    <a href=@Url.Action("Registration","WebHome") target="_blank">
+                        <i class="zmdi zmdi-account-circle"></i> <span>Registration</span>
+                    </a>
+                </li>
+
+                @*<li class="sidebar-header">LABELS</li>
+        <li><a href="javaScript:void();"><i class="zmdi zmdi-coffee text-danger"></i> <span>Important</span></a></li>
+        <li><a href="javaScript:void();"><i class="zmdi zmdi-chart-donut text-success"></i> <span>Warning</span></a></li>
+        <li><a href="javaScript:void();"><i class="zmdi zmdi-share text-info"></i> <span>Information</span></a></li>*@
+
+            </ul>
+
+        </div>
+        <header class="topbar-nav">
+            <nav class="navbar navbar-expand fixed-top">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link toggle-menu" href="javascript:void();">
+                            <i class="icon-menu menu-icon"></i>
+                        </a>
+                    </li>
+                    @*<li class="nav-item">
+                        <form class="search-bar">
+                            <input type="text" class="form-control" placeholder="Enter keywords">
+                            <a href="javascript:void();"><i class="icon-magnifier"></i></a>
+                        </form>
+                    </li>*@
+                </ul>
+
+                <ul class="navbar-nav align-items-center right-nav-link">
+                    @*<li class="nav-item dropdown-lg">
+                            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+                                <i class="fa fa-envelope-open-o"></i>
+                            </a>
+                        </li>*@
+                    @*<li class="nav-item dropdown-lg">
+                            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+                                <i class="fa fa-bell-o"></i>
+                            </a>
+                        </li>*@
+                    @*<li class="nav-item language">
+                            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
+                                <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
+                                <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
+                                <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
+                            </ul>
+                        </li>*@
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+                            <span class="user-profile"><img src="~/Contents/images/profile.jpg" class="img-circle" alt="user avatar"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="dropdown-item user-details">
+                                <a href="javaScript:void();">
+                                    <div class="media">
+                                        <div class="avatar"><img class="align-self-start mr-3" src="~/Contents/images/profile.jpg" alt="user avatar"></div>
+                                        <div class="media-body">
+                                            <h6 class="mt-2 user-title">User Name</h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item"><i class="icon-settings mr-2"></i> Profile</li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">
+                                <i class="icon-power mr-2"></i>
+                                <a href=@Url.Action("Logout","WebHome")>
+                                    <i class="ni ni-user-run"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="clearfix"></div>
+        @RenderBody()
+
+        <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+        <!--End Back To Top Button-->
+        <!--Start footer-->
+        <footer class="footer">
+            <div class="container">
+                <div class="text-center">
+                    Copyright © 2024 Research Center
+                </div>
+            </div>
+        </footer>
+        <!--End footer-->
+        <!--start color switcher-->
+
+    </div>
+    <script src="~/Contents/js/jquery.min.js"></script>
+    <script src="~/Contents/js/popper.min.js"></script>
+    <script src="~/Contents/js/bootstrap.min.js"></script>
+
+    <!-- simplebar js -->
+    <script src="~/Contents/plugins/simplebar/js/simplebar.js"></script>
+    <!-- sidebar-menu js -->
+    <script src="~/Contents/js/sidebar-menu.js"></script>
+    <!-- loader scripts -->
+    <script src="~/Contents/js/jquery.loading-indicator.js"></script>
+    <!-- Custom scripts -->
+    <script src="~/Contents/js/app-script.js"></script>
+    <!-- Chart js -->
+
+    <script src="~/Contents/plugins/Chart.js/Chart.min.js"></script>
+
+    <!-- Index js -->
+    <script src="~/Contents/js/index.js"></script>
+    <script src="~/Contents/js/national-validate.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(function () {
+            deptInput();
+            nameInput();
+            journalInput();
+            issueInput();
+            titleInput();
+            familyNameInput();
+            authorsInput();
+            specialityInput();
+            articalInput();
+            journalNameInput();
+            languageInput();
+            pageInput();
+            doiInput();
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            fetch('/WebHome/GetChartByYearInternational')
+                .then(response => response.json())
+                .then(data => {
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'line', // Change this to 'line', 'pie', etc. to use different chart types
+                        data: {
+                            labels: data.labels,
+                            datasets: data.datasets
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false,
+                                    labels: {
+                                        fontColor: '#ddd',
+                                        boxWidth: 40
+                                    }
+                                },
+                            },
+                            tooltips: {
+                                displayColors: false
+                            },
+                            scales: {
+
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        stepSize: 10, // Set the step size between ticks
+                                        callback: function (value) {
+                                            return value + ' P'; // Append text to each tick label
+                                        }
+                                    },
+                                    gridLines: {
+                                        display: true,
+                                        color: "rgba(255, 255, 255)"
+                                    },
+                                }]
+                            }
+
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching chart data:', error));
+        });
+    </script>
+    <script>
+        function parseJsonDate(jsonDateString) {
+            var match = jsonDateString.match(/\/Date\((\d+)\)\//);
+            if (match) {
+                var timestamp = parseInt(match[1], 10);
+                var date = new Date(timestamp);
+                return formatDate(date);
+            } else {
+                console.error('Invalid date format:', jsonDateString);
+                return null;
+            }
+        }
+        function formatDate(date) {
+            if (!(date instanceof Date) || isNaN(date.getTime())) {
+                console.error('Invalid Date object:', date);
+                return '';
+            }
+
+            var year = date.getFullYear();
+            var month = ('0' + (date.getMonth() + 1)).slice(-2);
+            var day = ('0' + date.getDate()).slice(-2);
+
+            return `${month}/${day}/${year}`;
+        }
+        function searchProducts() {
+            var query = $('#searchBar').val();
+            $.ajax({
+                url: '@Url.Action("Search", "InternationalPaper")',
+                type: 'GET',
+                data: { query: query },
+                success: function (data) {
+                    var tableBody = $('#productTable tbody');
+                    tableBody.empty(); // Clear existing rows
+                    data.forEach(function (item) {
+                        tableBody.append(
+                            '<tr>' +
+                            '<td>' + item.id + '</td>' +
+                            '<td>' + item.familyName + '</td>' +
+                            '<td>' + item.name + '</td>' +
+                            '<td>' + item.authors + '</td>' +
+                            '<td>' + item.department + '</td>' +
+                            '<td>' + item.faculty + '</td>' +
+                            '<td>' + item.designation + '</td>' +
+                            '<td>' + item.speciality + '</td>' +
+                            '<td>' + item.title + '</td>' +
+                            '<td>' + item.artical + '</td>' +
+                            '<td>' + item.journal + '</td>' +
+                            '<td>' + item.journalName + '</td>' +
+                            '<td>' + item.language + '</td>' +
+                            '<td>' + parseJsonDate(item.year) + '</td>' +
+                            '<td>' + item.issue + '</td>' +
+                            '<td>' + item.page + '</td>' +
+                            '<td>' + item.doi + '</td>' +
+                            '<td>' + '<a href="/UploadedFiles/' + item.pdfFile + '">' + item.pdfFile + '</a>' + '</td>' +
+                            '<td>' + item.comment + '</td>' +
+                            '<td>' + item.status + '</td>' +
+                            '<td>' + '<a class="btn btn-sm btn-success" href="/InternationalPaper/ChangeStatus/' + item.id + "?status=1 " + '">Accept</a>' + " " + '<a class="btn btn-sm btn-danger" href="/InternationalPaper/ChangeStatus/' + item.id + "?status=0 " + '">Decline</a>' + '</td>' +
+                            '<td>' + '<a class="btn btn-sm btn-primary" href="/InternationalPaper/Edit/' + item.id + '">Edit</a>' + " " + '<a class="btn btn-sm btn-danger" href="/InternationalPaper/Delete/' + item.id + '">Delete</a>' + '</td>' +
+
+                            '</tr>'
+                        );
+                    });
+                },
+                error: function () {
+                    alert('Error retrieving search results.');
+                }
+            });
+        }
+    </script>
+    <script>
+        function parseJsonDate(jsonDateString) {
+            var match = jsonDateString.match(/\/Date\((\d+)\)\//);
+            if (match) {
+                var timestamp = parseInt(match[1], 10);
+                var date = new Date(timestamp);
+                return formatDate(date);
+            } else {
+                console.error('Invalid date format:', jsonDateString);
+                return null;
+            }
+        }
+        function formatDate(date) {
+            if (!(date instanceof Date) || isNaN(date.getTime())) {
+                console.error('Invalid Date object:', date);
+                return '';
+            }
+
+            var year = date.getFullYear();
+            var month = ('0' + (date.getMonth() + 1)).slice(-2);
+            var day = ('0' + date.getDate()).slice(-2);
+
+            return `${month}/${day}/${year}`;
+        }
+        function searchNationalPaper() {
+            var query = $('#searchBar').val();
+            $.ajax({
+                url: '@Url.Action("Search", "NationalPaper")',
+                type: 'GET',
+                data: { query: query },
+                success: function (data) {
+                    var tableBody = $('#productTable tbody');
+                    tableBody.empty(); // Clear existing rows
+                    data.forEach(function (item) {
+                        tableBody.append(
+                            '<tr>' +
+                            '<td>' + item.id + '</td>' +
+                            '<td>' + item.journal + '</td>' +
+                            '<td>' + parseJsonDate(item.year) + '</td>' +
+                            '<td>' + item.title + '</td>' +
+                            '<td>' + item.faculty + '</td>' +
+                            '<td>' + item.department + '</td>' +
+                            '<td>' + item.designation + '</td>' +
+                            '<td>' + item.name + '</td>' +
+                            '<td>' + item.issue + '</td>' +
+                            '<td>' + '<a href="/UploadedFiles/' + item.pdfFile + '">' + item.pdfFile + '</a>' + '</td>' +
+                            '<td>' + item.comment + '</td>' +
+                            '<td>' + item.status + '</td>' +
+                            '<td>' + '<a class="btn btn-sm btn-success" href="/NationalPaper/ChangeStatus/' + item.id + "?status=1 " + '">Accept</a>' + " " + '<a class="btn btn-sm btn-danger" href="/NationalPaper/ChangeStatus/' + item.id + "?status=0 " + '">Decline</a>' + '</td>' +
+                            '<td>' + '<a class="btn btn-sm btn-primary" href="/NationalPaper/Edit/' + item.id + '">Edit</a>' + " " + '<a class="btn btn-sm btn-danger" href="/NationalPaper/Delete/' + item.id + '">Delete</a>' + '</td>' +
+                            '</tr>'
+                        );
+                    });
+                },
+                error: function () {
+                    alert('Error retrieving search results.');
+                }
+            });
+        }
+    </script>
+    <script>
+        function searchRegister() {
+            var query = $('#searchBar').val();
+            $.ajax({
+                url: '@Url.Action("Search", "WebHome")',
+                type: 'GET',
+                data: { query: query },
+                success: function (data) {
+                    var tableBody = $('#productTable tbody');
+                    tableBody.empty(); // Clear existing rows
+                    data.forEach(function (item) {
+                        tableBody.append(
+                            '<tr>' +
+                            '<td>' + item.id + '</td>' +
+                            '<td>' + item.name + '</td>' +
+                            '<td>' + item.phone + '</td>' +
+                            '<td>' + item.designation + '</td>' +
+                            '<td>' + item.department + '</td>' +
+                            '<td>' + item.faculty + '</td>' +
+                            '<td>' + item.email + '</td>' +
+                            '<td>' + item.status + '</td>' +
+                            '<td>' + '<a class="btn btn-sm btn-success" href="/WebHome/SendEmail/' + item.id + "?status=1 " + '">Accept</a>' + " " + '<a class="btn btn-sm btn-danger" href="/WebHome/SendEmail/' + item.id + "?status=0 " + '">Decline</a>' + '</td>' +
+                            '<td>' + '<a class="btn btn-sm btn-primary" href="/WebHome/EditUser/' + item.id + '">Edit</a>' + " " + '<a class="btn btn-sm btn-danger" href="/WebHome/DeleteUser/' + item.id + '">Delete</a>' + '</td>' +
+                            '</tr>'
+                        );
+                    });
+                },
+                error: function () {
+                    alert('Error retrieving search results.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Research Center Login</title>
+    <!-- loader-->
+    <link href="~/Contents/css/pace.min.css" rel="stylesheet" />
+    <script src="~/Contents/js/pace.min.js"></script>
+    <!--favicon-->
+    <link rel="icon" href="~/Contents/images/RCLogo.jpg" type="image/x-icon">
+    <!-- Bootstrap core CSS-->
+    <link href="~/Contents/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- animate CSS-->
+    <link href="~/Contents/css/animate.css" rel="stylesheet" type="text/css" />
+    <!-- Icons CSS-->
+    <link href="~/Contents/css/icons.css" rel="stylesheet" type="text/css" />
+    <!-- Custom Style-->
+    <link href="~/Contents/css/app-style.css" rel="stylesheet" />
+
+</head>
+
+<body class="bg-theme bg-theme2">
+
+    <!-- start loader -->
+    <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner"><div class="loader"></div></div></div></div>
+    <!-- end loader -->
+    <!-- Start wrapper-->
+    <div id="wrapper">
+
+        <div class="loader-wrapper"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+        <div class="card card-authentication1 mx-auto my-5">
+            <div class="card-body">
+                <div class="card-content p-2">
+                    <div class="text-center">
+                        <img src="~/Contents/images/RCLogo.jpg" alt="logo icon" style="width:80px; height:60px">
+                    </div>
+                    <div class="card-title text-uppercase text-center py-3">Sign In</div>
+                    @using (Html.BeginForm("Login", "WebHome", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Username</label>
+                            <div class="position-relative has-icon-right">
+                                <input type="email" id="email" name="email" class="form-control input-shadow" placeholder="Enter your email" required>
+                                <div class="form-control-position">
+                                    <i class="icon-user"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Password</label>
+                            <div class="position-relative has-icon-right">
+                                <input type="password" id="password" name="password" class="form-control input-shadow" placeholder="Enter Password" required>
+                                <div class="form-control-position">
+                                    <i class="icon-lock"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-light btn-block">Sign In</button>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer text-center py-3">
+                    <p class="text-warning mb-0">New User? <a href=@Url.Action("Registration", "WebHome")> Sign Up here</a></p>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 text-center">
+                    @if (ViewBag.error != null)
+                    {
+                        <span class="badge badge-danger">@ViewBag.error</span>
+                    }
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 text-center">
+                    @if (ViewBag.Message != null)
+                    {
+                        <span>@ViewBag.Message</span>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div><!--wrapper-->
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Contents/js/jquery.min.js"></script>
+    <script src="~/Contents/js/popper.min.js"></script>
+    <script src="~/Contents/js/bootstrap.min.js"></script>
+
+    <!-- sidebar-menu js -->
+    <script src="~/Contents/js/sidebar-menu.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="~/Contents/js/app-script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,823 @@
+﻿@using ResearchCenter.Models
+@{
+    var years = ViewBag.Year as List<string>;
+    var international = ViewBag.InternationalYears as List<string>;
+    var services = ViewBag.ServiceTable as List<Service>;
+    var achievements = ViewBag.AchievementTable as List<Achievement>;
+    var carousels = ViewBag.CarouselTable as List<Carousel>;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Research Center</title>
+    <meta name="description" content="">
+
+    <!-- CSS FILES -->
+
+    <link href=@Url.Content("/Contents/assets/css/bootstrap.min.css") rel="stylesheet">
+    <link rel="icon" href="~/Contents/images/RCLogo.png" type="image/x-icon">
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link href=@Url.Content("/Contents/assets/css/magnific-popup.css") rel="stylesheet">
+
+    <link href=@Url.Content("/Contents/assets/css/tooplate-waso-strategy.css") rel="stylesheet">
+
+    <style>
+        .dropbtn {
+            color: gray;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            font-size: 14px;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="row align-items-center">
+                Contact us with ->
+                <div class="col-lg-3 col-md-3 col-12 ms-auto">
+                    <ul class="social-icon">
+                        <li><a href="#" class="social-icon-link bi-facebook"></a></li>
+
+                        <li><a href="#" class="social-icon-link bi-x-circle-fill"></a></li>
+
+                        <li><a href="mailto:lali.wais.kdr@gmail.com" class="social-icon-link bi-envelope-fill"></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-lg">
+        <div class="container">
+
+            <img src="~/Contents/images/RCLogo.png" alt="RCLogo" style="width:200px; height:60px;" />
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_1">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="section_2">Graphs</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="section_3">Acheivments</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="section_4">Services</a>
+                    </li>
+
+                    <li class="dropdown nav-item">
+                        <a class="dropbtn nav-link click-scroll" href="section_5">Journals</a>
+                        <div class="dropdown-content">
+                            <a href=@Url.Action("PredatoryJournal", "WebHome")>Predatory Journal</a>
+                            <a href=@Url.Action("AcceptableJournal", "WebHome")>Acceptable Journal</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href=@Url.Action("Login", "WebHome")>Submission</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="hero">
+            <div class="container-fluid h-100">
+                <div class="row h-100">
+
+                    <div id="carouselExampleCaptions" class="carousel carousel-fade hero-carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach(var carousel in carousels)
+                            {
+                                if(carousel.id == 0)
+                                {
+                                    <div class="carousel-item active">
+                                        <div class="container position-relative h-100">
+                                            <div class="carousel-caption d-flex flex-column justify-content-center">
+                                                @*<small class="small-title">Introducing Waso Strategy <strong class="text-warning">01/05</strong></small>*@
+
+                                                <h1>@carousel.description</h1>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="carousel-image-wrap">
+                                            @{
+                                                string src = "~/UploadedFiles/" + carousel.imageString;
+                                            }
+                                            <img src="@Url.Content(src)" class="img-fluid carousel-image" alt="">
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="carousel-item">
+                                        <div class="container position-relative h-100">
+                                            <div class="carousel-caption d-flex flex-column justify-content-center">
+
+                                                <h1>@carousel.description</h1>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="carousel-image-wrap">
+                                            @{
+                                                string src = "~/UploadedFiles/" + carousel.imageString;
+                                            }
+                                            <img src="@Url.Content(src)" class="img-fluid carousel-image" alt="">
+                                        </div>
+                                    </div>
+                                }
+                                
+                            }
+                            
+
+                            
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section class="about section-padding" id="section_2">
+            <div class="container">
+                <div class="row">
+                    <h3>Ghraps for National Paper</h3>
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <form id="dataForm">
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 text-end">
+                                <select class="form-control form-control-rounded" id="inputData" name="inputData">
+                                    <option value="" disabled selected>Select the year</option>
+                                    @if (years != null)
+                                    {
+                                        foreach (var year in years)
+                                        {
+                                            <option value=@year>@year</option>
+                                        }
+                                    }
+                                </select>
+                                <button type="submit" style="background-color:aliceblue; border:thin; border-radius:0.5px;">Show Graph</button>
+                            </div>
+                        </form>
+
+                        <div class="result">
+                            <canvas id="polarChart" height="150"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <form id="form">
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 text-end">
+                                <select class="form-control form-control-rounded" id="input" name="input">
+                                    <option value="" disabled selected>Select the year</option>
+                                    @if (years != null)
+                                    {
+                                        foreach (var year in years)
+                                        {
+                                            <option value=@year>@year</option>
+                                        }
+                                    }
+                                </select>
+                                <button type="submit" style="background-color:aliceblue; border:thin; border-radius:0.5px;">Show Graph</button>
+                            </div>
+                        </form>
+
+                        <div class="result">
+                            <canvas id="barChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3>Ghraps for International Paper</h3>
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <form id="formData">
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 text-end">
+                                <select class="form-control form-control-rounded" id="inputYear" name="inputYear">
+                                    <option value="" disabled selected>Select the year</option>
+                                    @if (international != null)
+                                    {
+                                        foreach (var intern in international)
+                                        {
+                                            <option value=@intern>@intern</option>
+                                        }
+                                    }
+                                </select>
+                                <button type="submit" style="background-color:aliceblue; border:thin; border-radius:0.5px;">Show Graph</button>
+                            </div>
+                        </form>
+
+                        <div class="result">
+                            <canvas id="pieChart" height="150"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <form id="formData1">
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 text-end">
+                                <select class="form-control form-control-rounded" id="inputYear1" name="inputYear1">
+                                    <option value="" disabled selected>Select the year</option>
+                                    @if (international != null)
+                                    {
+                                        foreach (var intern in international)
+                                        {
+                                            <option value=@intern>@intern</option>
+                                        }
+                                    }
+                                </select>
+                                <button type="submit" style="background-color:aliceblue; border:thin; border-radius:0.5px;">Show Graph</button>
+                            </div>
+                        </form>
+
+                        <div class="result">
+                            <canvas id="barChartInternational" height="150"></canvas>
+                        </div>
+                        <div class="result">
+                            <canvas id="myChart" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects section-padding pb-0" id="section_3">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-10 col-12 text-center mx-auto mb-5">
+                        <h2>Our Acheivements</h2>
+                    </div>
+
+                    @foreach(var achievement in achievements)
+                    {
+                        <div class="col-lg-4 col-12">
+                            <div class="projects-thumb projects-thumb-small">
+                                
+                                    @{ 
+                                        string src = "~/UploadedFiles/" + achievement.imageString;
+                                    }
+                                    <img src="@Url.Content(src)" class="img-fluid projects-image" alt="">
+
+                                    <div class="projects-info">
+                                        <div class="projects-title-wrap">
+                                            <h3 class="projects-small-title">@achievement.title</h3>
+
+                                            <h6 class="projects-title">@achievement.description</h6>
+                                        </div>
+                                    </div>
+                               
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+
+        <section class="services section-padding" id="section_4">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-10 col-12 text-center mx-auto mb-5">
+                        <strong>Services</strong>
+
+                        <h2>What we do?</h2>
+
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <nav>
+                            <div class="nav nav-tabs flex-column align-items-baseline" id="nav-tab" role="tablist">
+                                @foreach (var service in services)
+                                {
+                                    if (service.id == 0)
+                                    {
+                                        <button class="nav-link active" id="nav-business-tab" data-bs-toggle="tab" data-bs-target="#nav-business" type="button" role="tab" aria-controls="nav-business" aria-selected="true">
+                                            <h3>@service.subject</h3>
+
+                                            <span>@service.description</span>
+                                        </button>
+                                    }
+                                    if (service.id == 1)
+                                    {
+                                        <button class="nav-link" id="nav-strategy-tab" data-bs-toggle="tab" data-bs-target="#nav-strategy" type="button" role="tab" aria-controls="nav-strategy" aria-selected="false">
+                                            <h3>@service.subject</h3>
+
+                                            <span>@service.description</span>
+                                        </button>
+                                    }
+                                    if (service.id == 2)
+                                    {
+                                        <button class="nav-link" id="nav-video-tab" data-bs-toggle="tab" data-bs-target="#nav-video" type="button" role="tab" aria-controls="nav-video" aria-selected="false">
+                                            <h3>@service.subject</h3>
+
+                                            <span>@service.description</span>
+                                        </button>
+                                    }
+                                }
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div class="col-lg-6 col-12">
+                        <div class="tab-content" id="nav-tabContent">
+                            @foreach (var service in services)
+                            {
+                                if (service.id == 0)
+                                {
+                                    <div class="tab-pane fade show active" id="nav-business" role="tabpanel" aria-labelledby="nav-intro-tab">
+                                        @{
+                                            string src = "~/UploadedFiles/" + service.imageString;
+                                        }
+                                        <img src="@Url.Content(src)" class="img-fluid" alt="">
+
+                                        <h5 class="mt-4 mb-2">@service.subject</h5>
+
+                                        <p>@service.description</p>
+
+                                    </div>
+                                }
+                                if (service.id == 1)
+                                {
+                                    <div class="tab-pane fade show" id="nav-strategy" role="tabpanel" aria-labelledby="nav-strategy-tab">
+                                        @{
+                                            string src = "~/UploadedFiles/" + service.imageString;
+                                        }
+                                        <img src="@Url.Content(src)" class="img-fluid" alt="">
+
+                                        <h5 class="mt-4 mb-2">@service.subject</h5>
+
+                                        <p>@service.description</p>
+
+                                    </div>
+                                }
+                                if (service.id == 2)
+                                {
+                                    <div class="tab-pane fade show" id="nav-video" role="tabpanel" aria-labelledby="nav-video-tab">
+                                        @{
+                                            string src = "~/UploadedFiles/" + service.imageString;
+                                        }
+                                        <img src="@Url.Content(src)" class="img-fluid" alt="">
+
+                                        <h5 class="mt-4 mb-2">@service.subject</h5>
+
+                                        <p>@service.description</p>
+
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="site-footer-wrap d-flex align-items-center">
+                        <p class="copyright-text mb-0 me-4">Copyright © Research Center 2024</p>
+
+                        <ul class="social-icon">
+                            <li><a href="#" class="social-icon-link bi-facebook"></a></li>
+
+                            <li><a href="#" class="social-icon-link bi-x-circle-fill"></a></li>
+
+                            <li><a href="#" class="social-icon-link bi-linkedin"></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src=@Url.Content("/Contents/assets/js/jquery.min.js")></script>
+    <script src=@Url.Content("/Contents/assets/js/bootstrap.min.js")></script>
+    <script src=@Url.Content("/Contents/assets/js/jquery.sticky.js")></script>
+    <script src=@Url.Content("/Contents/assets/js/jquery.magnific-popup.min.js")></script>
+    <script src=@Url.Content("/Contents/assets/js/magnific-popup-options.js")></script>
+    <script src=@Url.Content("/Contents/assets/js/click-scroll.js")></script>
+    <script src=@Url.Content("/Contents/assets/js/custom.js")></script>
+    <script src=@Url.Content("/Contents/assets/js/charts-scripts.js")></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            fetch('/WebHome/GetChartByFaculty')
+                .then(response => response.json())
+                .then(data => {
+                    var ctx = document.getElementById('polarChart').getContext('2d');
+
+                    // Initial chart setup with ViewBag data
+                    @*var chartLabels = '@ViewBag.ChartLabels'.split(',');
+                    var chartData = '@ViewBag.ChartData'.split(',').map(Number);*@
+
+                    var myChart = new Chart(ctx, {
+                        type: 'polarArea', // Change this to 'line', 'pie', etc. if desired
+                        data: {
+                            labels: data.labels,
+                            datasets: data.datasets
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        backgroundColor: 'black',
+                                        color: 'gray', // Change legend text color
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true, // Start the Y-axis at zero
+                                    ticks: {
+                                        stepSize: 20, // Set the step size between ticks
+                                        callback: function (value) {
+                                            return value + ' P'; // Append text to each tick label
+                                        }
+                                    },
+                                    grid: {
+                                        color: 'rgba(200, 200, 200, 0.2)', // Color of grid lines
+                                        borderColor: 'rgba(200, 200, 200, 0.8)' // Color of border
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Handle form submission
+                    $('#dataForm').submit(function (event) {
+                        event.preventDefault(); // Prevent the default form submission
+
+                        var inputData = $('#inputData').val();
+
+                        $.ajax({
+                            url: '@Url.Action("GetChartByFaculty", "WebHome")',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { inputData: inputData },
+                            success: function (data) {
+                                // Update the chart with new data
+                                myChart.data.labels = data.labels;
+                                myChart.data.datasets = data.datasets;
+
+                                myChart.update(); // Refresh the chart
+                            },
+                            error: function () {
+                                $('#resultContainer').html('<p>An error occurred.</p>');
+                            }
+                        });
+                    });
+                });
+                });
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            fetch('/WebHome/GetChartByDesignation')
+                .then(response => response.json())
+                .then(data => {
+                    var ctx = document.getElementById('barChart').getContext('2d');
+
+                    // Initial chart setup with ViewBag data
+                    @*var chartLabels = '@ViewBag.ChartLabels'.split(',');
+                    var chartData = '@ViewBag.ChartData'.split(',').map(Number);*@
+
+                    var myChart = new Chart(ctx, {
+                        type: 'bar', // Change this to 'line', 'pie', etc. if desired
+                        data: {
+                            labels: data.labels,
+                            datasets: data.datasets
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        backgroundColor: 'black',
+                                        color: 'gray', // Change legend text color
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true, // Start the Y-axis at zero
+                                    ticks: {
+                                        stepSize: 10, // Set the step size between ticks
+                                        callback: function (value) {
+                                            return value + ' P'; // Append text to each tick label
+                                        }
+                                    },
+                                    grid: {
+                                        color: 'rgba(200, 200, 200, 0.2)', // Color of grid lines
+                                        borderColor: 'rgba(200, 200, 200, 0.8)' // Color of border
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Handle form submission
+                    $('#form').submit(function (event) {
+                        event.preventDefault(); // Prevent the default form submission
+
+                        var input = $('#input').val();
+
+                        $.ajax({
+                            url: '@Url.Action("GetChartByDesignation", "WebHome")',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { input: input },
+                            success: function (data) {
+                                // Update the chart with new data
+                                myChart.data.labels = data.labels;
+                                myChart.data.datasets = data.datasets;
+
+                                myChart.update(); // Refresh the chart
+                            },
+                            error: function () {
+                                $('#resultContainer').html('<p>An error occurred.</p>');
+                            }
+                        });
+                    });
+                });
+                });
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            fetch('/WebHome/GetChartByFacultyInternational')
+                .then(response => response.json())
+                .then(data => {
+                    var ctx = document.getElementById('pieChart').getContext('2d');
+
+                    // Initial chart setup with ViewBag data
+                    @*var chartLabels = '@ViewBag.ChartLabels'.split(',');
+                    var chartData = '@ViewBag.ChartData'.split(',').map(Number);*@
+
+                    var myChart = new Chart(ctx, {
+                        type: 'polarArea', // Change this to 'line', 'pie', etc. if desired
+                        data: {
+                            labels: data.labels,
+                            datasets: data.datasets
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        backgroundColor: 'black',
+                                        color: 'gray', // Change legend text color
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true, // Start the Y-axis at zero
+                                    ticks: {
+                                        stepSize: 20, // Set the step size between ticks
+                                        callback: function (value) {
+                                            return value + ' P'; // Append text to each tick label
+                                        }
+                                    },
+                                    grid: {
+                                        color: 'rgba(200, 200, 200, 0.2)', // Color of grid lines
+                                        borderColor: 'rgba(200, 200, 200, 0.8)' // Color of border
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Handle form submission
+                    $('#formData').submit(function (event) {
+                        event.preventDefault(); // Prevent the default form submission
+
+                        var inputYear = $('#inputYear').val();
+
+                        $.ajax({
+                            url: '@Url.Action("GetChartByFacultyInternational", "WebHome")',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { inputYear: inputYear },
+                            success: function (data) {
+                                // Update the chart with new data
+                                myChart.data.labels = data.labels;
+                                myChart.data.datasets = data.datasets;
+
+                                myChart.update(); // Refresh the chart
+                            },
+                            error: function () {
+                                $('#resultContainer').html('<p>An error occurred.</p>');
+                            }
+                        });
+                    });
+                });
+                });
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            fetch('/WebHome/GetChartByDesignationInternational')
+                .then(response => response.json())
+                .then(data => {
+                    var ctx = document.getElementById('barChartInternational').getContext('2d');
+
+                    // Initial chart setup with ViewBag data
+                    @*var chartLabels = '@ViewBag.ChartLabels'.split(',');
+                    var chartData = '@ViewBag.ChartData'.split(',').map(Number);*@
+
+                    var myChart = new Chart(ctx, {
+                        type: 'bar', // Change this to 'line', 'pie', etc. if desired
+                        data: {
+                            labels: data.labels,
+                            datasets: data.datasets
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        backgroundColor: 'black',
+                                        color: 'gray', // Change legend text color
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true, // Start the Y-axis at zero
+                                    ticks: {
+                                        stepSize: 20, // Set the step size between ticks
+                                        callback: function (value) {
+                                            return value + ' P'; // Append text to each tick label
+                                        }
+                                    },
+                                    grid: {
+                                        color: 'rgba(200, 200, 200, 0.2)', // Color of grid lines
+                                        borderColor: 'rgba(200, 200, 200, 0.8)' // Color of border
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Handle form submission
+                    $('#formData1').submit(function (event) {
+                        event.preventDefault(); // Prevent the default form submission
+
+                        var inputYear1 = $('#inputYear1').val();
+
+                        $.ajax({
+                            url: '@Url.Action("GetChartByDesignationInternational", "WebHome")',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { inputYear1: inputYear1 },
+                            success: function (data) {
+                                // Update the chart with new data
+                                myChart.data.labels = data.labels;
+                                myChart.data.datasets = data.datasets;
+
+                                myChart.update(); // Refresh the chart
+                            },
+                            error: function () {
+                                $('#resultContainer').html('<p>An error occurred.</p>');
+                            }
+                        });
+                    });
+                });
+                });
+    </script>
+    <script>
+           $(document).ready(function () {
+    fetch('/WebHome/GetChartByYearInternational')
+        .then(response => response.json())
+        .then(data => {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line', // Change this to 'line', 'pie', etc. to use different chart types
+                data: {
+                    labels: data.labels,
+                    datasets: data.datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                backgroundColor: 'black',
+                                color: 'gray', // Change legend text color
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+
+                            gridLines: {
+                                display: true,
+                                color: 'rgba(200, 200, 200)'
+                            },
+                        }],
+                        yAxes: {
+                            beginAtZero: false, // Start the Y-axis at zero
+                            ticks: {
+                                stepSize: 10, // Set the step size between ticks
+
+                            },
+                            grid: {
+                                display: true,
+                                color: 'rgba(255, 255, 255)', // Color of grid lines
+                                borderColor: 'rgba(200, 200, 200)' // Color of border
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching chart data:', error));
+});
+        </script>
+</body>
+</html>

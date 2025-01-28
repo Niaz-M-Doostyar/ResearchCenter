@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "EditAcceptableJournal";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row mt-3 justify-content-center">
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Please fill with details</div>
+                        <hr>
+                        @for (int i = 0; i < Model.Rows.Count; i++)
+                        {
+                            using (Html.BeginForm("EditAcceptableJournal", "AcceptableJournal", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="form-group">
+                                    <label for="logo">Logo <small style="font-weight:bold">Maximum length 2MB</small></label>
+                                    <input type="file" id="logo" name="logo">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-light btn-round px-5">Submit</button>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div><!--End Row-->
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+
+</div>

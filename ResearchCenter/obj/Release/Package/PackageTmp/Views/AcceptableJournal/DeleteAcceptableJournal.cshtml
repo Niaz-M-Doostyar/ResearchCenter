@@ -1,0 +1,33 @@
+﻿@model ResearchCenter.Models.AcceptableJournal
+
+@{
+    ViewBag.Title = "DeleteAcceptableJournal";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+<h2>DeleteAcceptableJournal</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AcceptableJournal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.logoString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.logoString)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

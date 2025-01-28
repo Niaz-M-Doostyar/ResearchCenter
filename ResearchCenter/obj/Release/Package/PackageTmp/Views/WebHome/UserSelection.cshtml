@@ -1,0 +1,72 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "UserSelection";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <form class="search-bar">
+                            <input type="text" id="searchBar" class="form-control" placeholder="Enter for name, faculty and designation" onkeyup="searchRegister()">
+                            <a><i class="icon-magnifier"></i></a>
+                        </form>
+                    </div>
+                    <h5 class="card-title py-4">
+                        Users @if (ViewBag.Message != null)
+                        {
+                            <span>@ViewBag.Message</span>
+                        }
+                    </h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="productTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Academoc Rank</th>
+                                    <th scope="col">Department</th>
+                                    <th scope="col">Faculty</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Password</th>
+                                    <th scope="col">status</th>
+                                    <th scope="col">Confirmation</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Rows.Count; i++)
+                                {
+                                    <tr>
+                                        <td>@Model.Rows[i][0]</td>
+                                        <td>@Model.Rows[i][1]</td>
+                                        <td>@Model.Rows[i][2]</td>
+                                        <td>@Model.Rows[i][3]</td>
+                                        <td>@Model.Rows[i][4]</td>
+                                        <td>@Model.Rows[i][5]</td>
+                                        <td>@Model.Rows[i][6]</td>
+                                        <td>@Model.Rows[i][7]</td>
+                                        <td>@Model.Rows[i][8]</td>
+                                        <td>
+                                            <a class="btn btn-sm btn-success" href=@Url.Action("SendEmail", "WebHome", new { @id=@Model.Rows[i][0], @status = "1" })>Accept</a>
+                                            <a class="btn btn-sm btn-danger" href=@Url.Action("SendEmail", "WebHome", new { @id=@Model.Rows[i][0], @status = "0" })>Decline</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-sm btn-primary" href=@Url.Action("EditUser", "WebHome", new { @id=@Model.Rows[i][0] })>Edit</a>
+                                            <a class="btn btn-sm btn-danger" href=@Url.Action("DeleteUser", "WebHome", new { @id=@Model.Rows[i][0] })>Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
